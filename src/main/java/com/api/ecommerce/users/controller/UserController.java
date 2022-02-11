@@ -1,10 +1,13 @@
 package com.api.ecommerce.users.controller;
 
 
+import java.util.List;
+
 import com.api.ecommerce.users.models.User;
 import com.api.ecommerce.users.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +25,10 @@ public class UserController {
     public User login(@RequestBody User user){
         return userService.create(user);
     }
-    
+
+    @GetMapping("/all")
+    public List<User> findAll(){
+        return userService.findAll();
+    }
 
 }

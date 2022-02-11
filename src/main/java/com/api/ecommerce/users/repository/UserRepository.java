@@ -1,5 +1,7 @@
 package com.api.ecommerce.users.repository;
 
+import java.util.List;
+
 import com.api.ecommerce.users.models.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,5 +22,9 @@ public class UserRepository {
 
     public User create(User user){
         return mongoTemplate.save(user);
+    }
+
+    public List<User> findAll(){
+        return mongoTemplate.findAll(User.class);
     }
 }
