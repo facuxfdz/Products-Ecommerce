@@ -6,7 +6,7 @@
     </Console>
   </Appenders>
   <Loggers>
-    <Logger level="trace" name="com.api.ecommerce.controller" />
+    <Logger level="trace" name="com.api.ecommerce" />
     <Root level="error">
       <AppenderRef ref="CONSOLE" level="trace"/>
     </Root>
