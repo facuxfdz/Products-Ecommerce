@@ -14,24 +14,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/user")
 public class UserController {
     
     @Autowired
     UserService userService;
 
-    @PostMapping("/login")
-    public String login(){
-        return "login";
-    }
-
     @PostMapping("/sign-up")
-    public User signUp(@RequestBody User user){
+    public User login(@RequestBody User user){
         return userService.create(user);
     }
+    
 
-    @GetMapping("/{email}")
-    public User findByEmail(@PathVariable String email){
-        return userService.findByEmail(email);
-    }
 }
