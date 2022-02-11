@@ -21,4 +21,8 @@ public class ProductsService {
     public Product create(Product product) {
         return productsRepository.create(product);
     }
+
+    public String deleteById(String id) {
+        return productsRepository.deleteById(id);
+    }
 }
