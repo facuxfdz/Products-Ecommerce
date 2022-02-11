@@ -27,13 +27,13 @@ import lombok.extern.log4j.Log4j2;
 
 @Log4j2
 
-public class CustomAuthFilter extends UsernamePasswordAuthenticationFilter{
+public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFilter{
     
     private static final String APPLICATION_JSON_VALUE = "application/json";
 
     private final AuthenticationManager authenticationManager;
 
-    public CustomAuthFilter(AuthenticationManager authenticationManager){
+    public CustomAuthenticationFilter(AuthenticationManager authenticationManager){
         this.authenticationManager = authenticationManager;
     }
 
