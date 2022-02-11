@@ -3,7 +3,6 @@ package com.api.ecommerce.users.service;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 import com.api.ecommerce.users.models.User;
 import com.api.ecommerce.users.repository.UserRepository;
@@ -54,7 +53,4 @@ public class UserService implements UserDetailsService {
         return userRepository.findByEmail(email);
     }
 
-    public List<User> findAll() {
-        return userRepository.findAll();
-    }
 }
