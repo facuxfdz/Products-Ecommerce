@@ -2,17 +2,14 @@ package com.api.ecommerce.users.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
-import static org.springframework.http.HttpMethod.POST;
 
 import com.api.ecommerce.users.security.filter.CustomAuthFilter;
-
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -38,7 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(STATELESS);
         http.authorizeRequests().antMatchers("/user/**").permitAll();
-        // http.authorizeRequests().antMatchers(POST, "/user/**").hasAnyAuthority("user");
+        // http.authorizeRequests().antMatchers(HttpMethod.POST, "/user/**").hasAnyAuthority("user");
         http.authorizeHttpRequests().anyRequest().authenticated();
         http.addFilter(customAuthFilter);
     }

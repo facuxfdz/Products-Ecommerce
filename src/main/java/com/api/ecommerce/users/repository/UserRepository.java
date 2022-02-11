@@ -1,9 +1,5 @@
 package com.api.ecommerce.users.repository;
 
-
-
-import java.util.List;
-
 import com.api.ecommerce.users.models.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
