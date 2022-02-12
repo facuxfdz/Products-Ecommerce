@@ -23,10 +23,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import lombok.extern.log4j.Log4j2;
-
-@Log4j2
-
 public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFilter{
     
     private static final String APPLICATION_JSON_VALUE = "application/json";
@@ -42,8 +38,6 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
             throws AuthenticationException {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        log.info("Email is: {}", email);
-        log.info("Password is: {}", password);
 
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(email, password);
 

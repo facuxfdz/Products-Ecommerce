@@ -22,11 +22,9 @@ public class CartRepository {
         return mongoTemplate.save(product);
     }
 
-    public CartProduct findByProductId(String productId){
-        Query query = new Query().addCriteria(Criteria.where("productId").is(productId));
-        List<CartProduct> list = mongoTemplate.find(query, CartProduct.class);
-        log.debug(list);
-
+    public CartProduct findByProductId(String productId, String userEmail){
+        Query query = new Query().addCriteria(Criteria.where("productId").is(productId).and("userEmail").is(userEmail));
+        
         return mongoTemplate.find(query, CartProduct.class).size() != 0 ? mongoTemplate.find(query, CartProduct.class).get(0) : null;
     }
     

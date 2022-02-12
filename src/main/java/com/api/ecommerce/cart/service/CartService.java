@@ -29,10 +29,10 @@ public class CartService {
     public CartProduct addProduct(CartProductReq product) {
         Product existentProduct = productsRepository.findById(product.getId());
         if(existentProduct != null){
-            CartProduct existenCartProduct = cartRepository.findByProductId(existentProduct.getId());
+            String userEmail = jwtTokenUtil.getEmailFromToken();
+            CartProduct existenCartProduct = cartRepository.findByProductId(existentProduct.getId(),userEmail);
             
-            if(existenCartProduct == null){
-                String userEmail = jwtTokenUtil.getEmailFromToken();
+            if(existenCartProduct == null ){
                 CartProduct newProduct = new CartProduct();
                 newProduct.setUserEmail(userEmail);
                 newProduct.setProductId(existentProduct.getId());
