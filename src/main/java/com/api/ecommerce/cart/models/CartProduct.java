@@ -3,6 +3,7 @@ package com.api.ecommerce.cart.models;
 import com.api.ecommerce.products.models.Product;
 import com.api.ecommerce.users.models.User;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -18,11 +19,10 @@ import lombok.Setter;
 @Document("cart_products")
 public class CartProduct {
      
-     @DBRef
-     private User user;
-     
-     @DBRef
-     private Product product;
+     @Id
+     private String id;
+     private String userEmail;
+     private String productId;
 
      private int price;
      private int amount;

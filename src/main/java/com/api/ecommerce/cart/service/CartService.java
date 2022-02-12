@@ -28,10 +28,27 @@ public class CartService {
         User user = userRepository.findByEmail("facu@facu.com");
 
         if(existentProduct != null){
-            CartProduct newProduct = new CartProduct(user,existentProduct,existentProduct.getPrice(),product.getAmount());
-            return cartRepository.add(newProduct);
+            CartProduct existenCartProduct = cartRepository.findByProductId(existentProduct.getId());
+            
+            if(existenCartProduct == null){
+                // = new CartProduct(user.getEmail(),existentProduct.getId(),existentProduct.getPrice(),product.getAmount())
+                CartProduct newProduct = new CartProduct();
+                newProduct.setUserEmail(user.getEmail());
+                newProduct.setProductId(existentProduct.getId());
+                newProduct.setPrice(existentProduct.getPrice());
+                newProduct.setAmount(product.getAmount());
+                return cartRepository.add(newProduct);
+            }else{
+                existenCartProduct.setAmount(existenCartProduct.getAmount() + product.getAmount());
+                return this.updateCartProduct(existenCartProduct, existenCartProduct.getId());
+            }
         }    
 
         return null;
+    }
+
+    public CartProduct updateCartProduct(CartProduct cartProduct, String id){
+        cartProduct.setId(id);
+        return cartRepository.add(cartProduct);
     }
 }
