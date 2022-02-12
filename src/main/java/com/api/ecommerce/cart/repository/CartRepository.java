@@ -3,8 +3,6 @@ package com.api.ecommerce.cart.repository;
 import java.util.List;
 
 import com.api.ecommerce.cart.models.CartProduct;
-import com.mongodb.DBRef;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
