@@ -5,7 +5,6 @@ import com.api.ecommerce.cart.models.CartProductReq;
 import com.api.ecommerce.cart.repository.CartRepository;
 import com.api.ecommerce.products.models.Product;
 import com.api.ecommerce.products.repository.ProductsRepository;
-import com.api.ecommerce.users.models.User;
 import com.api.ecommerce.users.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,17 +22,14 @@ public class CartService {
     @Autowired
     UserRepository userRepository;
 
-    public CartProduct addProduct(CartProductReq product) {
+    public CartProduct addProduct(CartProductReq product, String userEmail) {
         Product existentProduct = productsRepository.findById(product.getId());
-        User user = userRepository.findByEmail("facu@facu.com");
-
         if(existentProduct != null){
             CartProduct existenCartProduct = cartRepository.findByProductId(existentProduct.getId());
             
             if(existenCartProduct == null){
-                // = new CartProduct(user.getEmail(),existentProduct.getId(),existentProduct.getPrice(),product.getAmount())
                 CartProduct newProduct = new CartProduct();
-                newProduct.setUserEmail(user.getEmail());
+                newProduct.setUserEmail(userEmail);
                 newProduct.setProductId(existentProduct.getId());
                 newProduct.setPrice(existentProduct.getPrice());
                 newProduct.setAmount(product.getAmount());
