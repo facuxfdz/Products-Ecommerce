@@ -25,4 +25,9 @@ public class ProductsService {
     public String deleteById(String id) {
         return productsRepository.deleteById(id);
     }
+
+    public Product updateWithId(String id, Product product) {
+        product.setId(id);
+        return this.create(product);
+    }
 }
