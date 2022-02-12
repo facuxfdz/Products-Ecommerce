@@ -1,7 +1,5 @@
 package com.api.ecommerce.cart.models;
 
-import java.io.Serializable;
-
 import com.api.ecommerce.products.models.Product;
 import com.api.ecommerce.users.models.User;
 

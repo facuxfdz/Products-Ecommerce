@@ -1,7 +1,5 @@
 package com.api.ecommerce.cart.service;
 
-import javax.naming.NameNotFoundException;
-
 import com.api.ecommerce.cart.models.CartProduct;
 import com.api.ecommerce.cart.models.CartProductReq;
 import com.api.ecommerce.cart.repository.CartRepository;
