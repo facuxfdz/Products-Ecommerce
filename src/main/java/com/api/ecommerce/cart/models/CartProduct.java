@@ -1,6 +1,12 @@
 package com.api.ecommerce.cart.models;
 
+import java.io.Serializable;
+
 import com.api.ecommerce.products.models.Product;
+import com.api.ecommerce.users.models.User;
+
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,7 +17,15 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CartProduct extends Product{
+@Document("cart_products")
+public class CartProduct {
+     
+     @DBRef
+     private User user;
+     
+     @DBRef
+     private Product product;
+
      private int price;
      private int amount;
 }
