@@ -3,6 +3,7 @@ package com.api.ecommerce.cart.service;
 import com.api.ecommerce.cart.models.CartProduct;
 import com.api.ecommerce.cart.models.CartProductReq;
 import com.api.ecommerce.cart.repository.CartRepository;
+import com.api.ecommerce.jwt.JwtTokenUtil;
 import com.api.ecommerce.products.models.Product;
 import com.api.ecommerce.products.repository.ProductsRepository;
 import com.api.ecommerce.users.repository.UserRepository;
@@ -22,12 +23,16 @@ public class CartService {
     @Autowired
     UserRepository userRepository;
 
-    public CartProduct addProduct(CartProductReq product, String userEmail) {
+    @Autowired
+    JwtTokenUtil jwtTokenUtil;
+    
+    public CartProduct addProduct(CartProductReq product) {
         Product existentProduct = productsRepository.findById(product.getId());
         if(existentProduct != null){
             CartProduct existenCartProduct = cartRepository.findByProductId(existentProduct.getId());
             
             if(existenCartProduct == null){
+                String userEmail = jwtTokenUtil.getEmailFromToken();
                 CartProduct newProduct = new CartProduct();
                 newProduct.setUserEmail(userEmail);
                 newProduct.setProductId(existentProduct.getId());

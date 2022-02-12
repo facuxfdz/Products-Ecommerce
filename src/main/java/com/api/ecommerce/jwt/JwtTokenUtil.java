@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class JwtTokenUtil {
     
-    public String getEmailFromToken(String token){
+    public String getEmailFromToken(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String email = authentication.getName();
         return email;
