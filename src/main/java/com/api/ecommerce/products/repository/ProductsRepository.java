@@ -29,4 +29,8 @@ public class ProductsRepository {
         Product removedProduct = mongoTemplate.findAndRemove(removeQuery, Product.class);
         return "Product with id " + removedProduct.getId() + " deleted successfully";
     }
+
+    public Product findById(String id) {
+        return mongoTemplate.findById(id, Product.class);
+    }
 }

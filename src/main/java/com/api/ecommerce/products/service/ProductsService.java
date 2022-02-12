@@ -30,4 +30,8 @@ public class ProductsService {
         product.setId(id);
         return this.create(product);
     }
+
+    public Product getProductById(String id) {
+        return productsRepository.findById(id);
+    }
 }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -26,6 +27,12 @@ public class ProductsController {
     public List<Product> getAll(){
         return productsService.getAllProducts();
     }
+
+    @GetMapping(params = "id")
+    public Product getById(@RequestParam String id){
+        return productsService.getProductById(id);
+    }
+
 
     @PostMapping
     public Product create(@RequestBody Product product){
