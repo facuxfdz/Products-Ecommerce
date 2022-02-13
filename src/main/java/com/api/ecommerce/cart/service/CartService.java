@@ -30,7 +30,7 @@ public class CartService {
         Product existentProduct = productsRepository.findById(product.getId());
         if(existentProduct != null){
             String userEmail = jwtTokenUtil.getEmailFromToken();
-            CartProduct existenCartProduct = cartRepository.findByProductId(existentProduct.getId(),userEmail);
+            CartProduct existenCartProduct = cartRepository.findByProductIdAndUserEmail(existentProduct.getId(),userEmail);
             
             if(existenCartProduct == null ){
                 CartProduct newProduct = new CartProduct();

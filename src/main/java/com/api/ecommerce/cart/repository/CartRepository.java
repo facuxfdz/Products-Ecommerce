@@ -18,7 +18,7 @@ public class CartRepository {
         return mongoTemplate.save(product);
     }
 
-    public CartProduct findByProductId(String productId, String userEmail){
+    public CartProduct findByProductIdAndUserEmail(String productId, String userEmail){
         Query query = new Query().addCriteria(Criteria.where("productId").is(productId).and("userEmail").is(userEmail));
         
         return mongoTemplate.find(query, CartProduct.class).size() != 0 ? mongoTemplate.find(query, CartProduct.class).get(0) : null;
