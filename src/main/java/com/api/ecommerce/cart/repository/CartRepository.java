@@ -1,6 +1,8 @@
 package com.api.ecommerce.cart.repository;
 
 
+import java.util.List;
+
 import com.api.ecommerce.cart.models.CartProduct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -22,6 +24,12 @@ public class CartRepository {
         Query query = new Query().addCriteria(Criteria.where("productId").is(productId).and("userEmail").is(userEmail));
         
         return mongoTemplate.find(query, CartProduct.class).size() != 0 ? mongoTemplate.find(query, CartProduct.class).get(0) : null;
+    }
+
+    public List<CartProduct> findByUserEmail(String userEmail) {
+        Query query = new Query().addCriteria(Criteria.where("userEmail").is(userEmail));
+
+        return mongoTemplate.find(query, CartProduct.class);
     }
     
 }

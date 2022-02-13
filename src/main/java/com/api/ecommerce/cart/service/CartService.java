@@ -1,5 +1,7 @@
 package com.api.ecommerce.cart.service;
 
+import java.util.List;
+
 import com.api.ecommerce.cart.models.CartProduct;
 import com.api.ecommerce.cart.models.CartProductReq;
 import com.api.ecommerce.cart.repository.CartRepository;
@@ -51,5 +53,10 @@ public class CartService {
     public CartProduct updateCartProduct(CartProduct cartProduct, String id){
         cartProduct.setId(id);
         return cartRepository.add(cartProduct);
+    }
+
+    public List<CartProduct> getCartProducts() {
+        String userEmail = jwtTokenUtil.getEmailFromToken();
+        return cartRepository.findByUserEmail(userEmail);
     }
 }
