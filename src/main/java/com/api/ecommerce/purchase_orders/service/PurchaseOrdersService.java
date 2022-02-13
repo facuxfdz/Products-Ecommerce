@@ -33,8 +33,14 @@ public class PurchaseOrdersService {
             log.warn("There are no products added to cart yet");
             return null;
         }
-        log.info("PRODUCTS:\n{}",cartProducts);
-        return null;
+        PurchaseOrder order = new PurchaseOrder(); 
+        for(CartProduct product : cartProducts){
+            order.setTotalPrice(order.getTotalPrice() + product.getPrice() * product.getAmount());
+            order.getProducts().add(product);
+        }
+        order.setStatus("generated");
+
+        return purchaseOrdersRepository.create(order);
     }
 
     
