@@ -30,6 +30,5 @@ public class CartRepository {
         Query query = new Query().addCriteria(Criteria.where("userEmail").is(userEmail));
 
         return mongoTemplate.find(query, CartProduct.class);
-    }
-    
+    }    
 }
