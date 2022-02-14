@@ -39,9 +39,17 @@ public class PurchaseOrdersService {
             order.getProducts().add(product);
         }
         order.setStatus("generated");
-
-        return purchaseOrdersRepository.create(order);
+        
+        boolean queryWasOk = cartRepository.emptyCart(userEmail);
+        if(queryWasOk) return purchaseOrdersRepository.create(order);
+        else{
+            log.warn("Query was wrong creating the purchase order");
+            return null;
+        }
+        
     }
+
+
 
     
 }

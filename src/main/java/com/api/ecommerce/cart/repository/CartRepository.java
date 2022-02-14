@@ -10,7 +10,10 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
+import lombok.extern.log4j.Log4j2;
+
 @Repository
+@Log4j2
 public class CartRepository {
 
     @Autowired
@@ -30,5 +33,17 @@ public class CartRepository {
         Query query = new Query().addCriteria(Criteria.where("userEmail").is(userEmail));
 
         return mongoTemplate.find(query, CartProduct.class);
-    }    
+    }
+
+    public boolean emptyCart(String userEmail){
+        Query query = new Query().addCriteria(Criteria.where("userEmail").is(userEmail));
+        try{
+            mongoTemplate.findAllAndRemove(query, CartProduct.class);
+            return true;
+        }catch(Exception e){
+            log.error("An error has ocurred: {}",e.getMessage());
+            return false;
+        }
+
+    }
 }
