@@ -14,7 +14,7 @@ public class UserRepository {
     @Autowired MongoTemplate mongoTemplate;    
 
     public User findByEmail(String email){
-        Query query = new Query().addCriteria(Criteria.where("email").is(email)).limit(1);
+        Query query = new Query().addCriteria(Criteria.where("email").is(email));
         return mongoTemplate.find(query, User.class).get(0);
     }
 
