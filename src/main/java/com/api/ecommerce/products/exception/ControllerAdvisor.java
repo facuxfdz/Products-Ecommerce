@@ -18,4 +18,12 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
         body.put("error_message", "Product with given id was not found");
         return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler(EmptyListOfProducts.class)
+    public ResponseEntity<Object> handleEmptyListOfProductsException(EmptyListOfProducts ex){
+        Map<String,Object> body = new LinkedHashMap<>();
+        body.put("error_message", "No products were uploaded yet");
+        return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
+    }
+
 }
