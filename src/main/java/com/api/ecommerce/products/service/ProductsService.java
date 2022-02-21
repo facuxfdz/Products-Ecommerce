@@ -2,6 +2,7 @@ package com.api.ecommerce.products.service;
 
 import java.util.List;
 
+import com.api.ecommerce.products.exception.EmptyListOfProducts;
 import com.api.ecommerce.products.exception.ProductNotFound;
 import com.api.ecommerce.products.models.Product;
 import com.api.ecommerce.products.repository.ProductsRepository;
@@ -16,7 +17,11 @@ public class ProductsService {
     ProductsRepository productsRepository;
 
     public List<Product> getAllProducts(){
-        return productsRepository.findAll();
+        List<Product> products = productsRepository.findAll();
+        if(products == null || products.size() == 0){
+            throw new EmptyListOfProducts();
+        }
+        return products;
     }
 
     public Product create(Product product) {
