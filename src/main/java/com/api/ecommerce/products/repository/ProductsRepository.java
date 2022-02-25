@@ -2,6 +2,7 @@ package com.api.ecommerce.products.repository;
 
 import java.util.List;
 
+import com.api.ecommerce.products.exception.ProductNotFound;
 import com.api.ecommerce.products.models.Product;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,9 @@ public class ProductsRepository {
     public String deleteById(String id) {
         Query removeQuery = new Query().addCriteria(Criteria.where("id").is(id));
         Product removedProduct = mongoTemplate.findAndRemove(removeQuery, Product.class);
+        if(removedProduct == null){
+            throw new ProductNotFound(id);
+        }
         return "Product with id " + removedProduct.getId() + " deleted successfully";
     }
 
